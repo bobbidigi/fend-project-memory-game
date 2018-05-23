@@ -65,13 +65,30 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    /* backface-visibility: hidden; */
 }
 
 .deck .card.open {
-    transform: rotateY(0);
+    transform: rotateY(180deg);
     background: #02b3e4;
     cursor: default;
 }
+
+
+/* .deck .card:hover,
+.card .fa {
+    transition: transform .333s;
+    transform: rotateY(180deg);
+    background: #02b3e4;
+    cursor: default;
+} */
+
+
+/* .card .fa {
+    backface-visibility: hidden;
+} */
 
 .deck .card.show {
     font-size: 33px;
