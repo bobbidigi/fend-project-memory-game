@@ -1,27 +1,33 @@
 /*
  * Create a list that holds all of your cards
- */
-const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb', 'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'];
-/*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  * 
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-shuffle(cards);
+const cards = ['fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb',
+    'fa-diamond', 'fa-paper-plane-o', 'fa-anchor', 'fa-bolt', 'fa-cube', 'fa-leaf', 'fa-bicycle', 'fa-bomb'
+];
 
-for (let i = 0; i <= cards.length - 1; i++) {
-    const card = document.createElement('LI');
-    card.classList.add('card');
-    const shape = document.createElement('I');
-    shape.classList.add('fa');
-    shape.classList.add(cards[i]);
-    card.appendChild(shape);
-    document.querySelector('.deck').appendChild(card);
+function makeCard(card) {
+    return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 }
 
+function initGame() {
+    var deck = document.querySelector('.deck');
+    var cardHTML = shuffle(cards).map(function(card) {
+        return makeCard(card);
+    });
+    deck.innerHTML = cardHTML.join(" ");
+    moves = 0;
+    moveCounter.innerText = moves;
+}
 
+let moves = 0;
+const moveCounter = document.querySelector('.moves');
+
+initGame();
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length,
@@ -40,31 +46,47 @@ function shuffle(array) {
 
 
 
+var allCards = document.querySelectorAll('.card');
+var openCards = [];
+
+
+allCards.forEach(function(card) {
+
+    card.addEventListener('click', function(e) {
+
+        if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match') && !(openCards.length >= 2)) {
+            openCards.push(card);
+            open(card);
+
+            // check if they match using dataset
+            if (openCards[0].dataset.card == openCards[1].dataset.card) {
+                match(openCards[0]);
+                match(openCards[1]);
+            }
+
+
+            // if cards dont match turn down and reset open cards to []
+            if (openCards.length == 2) {
+                openCards.forEach(function(card) {
+                    setTimeout(function() {
+                        card.classList.remove('open', 'show');
+                        openCards = [];
+                    }, 1000);
+                });
+            }
+        }
+    });
+});
+
+function open(el) {
+    el.classList.add('open', 'show');
+}
+
+function match(el) {
+    el.classList.add('open', 'show', 'match');
+}
+
 //set up the event listener for a card. If a card is clicked:
-
-// iterate through node list  from https://stackoverflow.com/a/21917404/6362721
-const cardNodeList = document.querySelectorAll('.card');
-console.log(cardNodeList);
-for (var i = 0; i < cardNodeList.length; i++) {
-    cardNodeList[i].addEventListener('click', clickFunction);
-}
-
-function clickFunction() {
-    console.log(this);
-    showFunc(this);
-    // cardsOpen();
-}
-
-function showFunc(elem) {
-    elem.classList.add('show');
-    elem.classList.add('open');
-}
-
-function cardsOpen() {
-    let openCardsList = [];
-}
-
-
 //  - display the card's symbol (put this functionality in another function that you call from this one)
 //  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
 //  - if the list already has another card, check to see if the two cards match
