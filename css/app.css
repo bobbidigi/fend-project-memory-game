@@ -100,6 +100,95 @@ h1 {
     font-size: 33px;
 }
 
+.win {
+    background: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: open 1s ease-in-out forwards;
+    display: none;
+}
+
+@keyframes open {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+.win h1 {
+    color: #fff;
+    font-size: 5vw;
+    margin: 2em auto;
+}
+
+.win button {
+    width: calc(50vw - 10px);
+    /* height: 31px; */
+    background: #9C27B0;
+    border: none;
+    padding: 5vw;
+    color: #fff;
+    border-radius: 7px;
+    font-size: 5vw;
+    cursor: pointer;
+}
+
+.win button:hover {
+    background: #BA68C8;
+    color: #fff;
+    box-shadow: 5px 10px 10px 5px rgba(46, 61, 73, 0.5);
+}
+
+@media screen and (min-width: 400px) {
+    .win button {
+        font-size: 4vw;
+        padding: 4vw;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .win h1 {
+        font-size: 4vw;
+    }
+    .win button {
+        width: 40vw;
+        font-size: 3vw;
+        padding: 3vw;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .win h1 {
+        font-size: 3vw;
+    }
+    .win button {
+        width: 33vw;
+        font-size: 3vw;
+        padding: 2vw;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .win h1 {
+        font-size: 2.5vw;
+    }
+    .win button {
+        width: 22vw;
+        font-size: 2.2vw;
+        padding: 1.5vw;
+    }
+}
+
 
 /*
  * Styles for the Score Panel
