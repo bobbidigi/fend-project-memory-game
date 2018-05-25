@@ -45,17 +45,7 @@ function winner(moves) {
 
 // reset-won and restart for restart
 function reset() {
-
-    // movesCount(-moves);
-    // console.log(matchedCards.length);
-    // console.log(openCards.length);
-    // openCards = [];
-    // matchedCards = [];
-    // allCards.forEach(function(card) {
-    // if(card.hasAttribute('open', ''))
-    // card.classList.remove('open', 'show', 'match');
-    // });
-    initGame();
+    location.reload();
 }
 
 
@@ -88,37 +78,35 @@ allCards.forEach(function(card) {
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match') && !(openCards.length >= 2)) {
             openCards.push(card);
             open(card);
-            // check if they match using dataset open cards
-            if (openCards[0].dataset.card == openCards[1].dataset.card) {
-                // add match class
-                matchedCards.push(openCards[0]);
-                matchedCards.push(openCards[1]);
-                match(openCards[0]);
-                match(openCards[1]);
-                openCards = [];
-                movesCount(1);
-                if (matchedCards.length == 16) {
-                    setTimeout(function() {
-                        matchedCards.forEach(function(card) {
-                            unmatch(card);
-                            card.remove();
-                            matchedCards = [];
+            // if there are 2 open cards
+            if (openCards.length > 1) {
+                // check if they match
+                if (openCards[0].dataset.card == openCards[1].dataset.card) {
+                    console.log(openCards);
+                    // add match class and push to matchedCards array
+                    matchedCards.push(openCards[0]);
+                    matchedCards.push(openCards[1]);
+                    match(openCards[0]);
+                    match(openCards[1]);
+                    openCards = [];
+                    // moves + 1
+                    movesCount(1);
+                    // if all 16 matched 
+                    if (matchedCards.length == 16) {
+                        winner(moves);
+                    }
+                } else {
+                    movesCount(1);
+                    // if cards dont match turn down and reset open cards to []
+                    openCards.forEach(function(card) {
+                        setTimeout(function() {
+                            card.classList.remove('open', 'show');
                             openCards = [];
-                            movesCount(-moves);
-                        });
-                    }, 1000);
-                    winner(moves);
+                        }, 1000);
+                    });
                 }
-            } else {
-                movesCount(1);
-                // if cards dont match turn down and reset open cards to []
-                openCards.forEach(function(card) {
-                    setTimeout(function() {
-                        card.classList.remove('open', 'show');
-                        openCards = [];
-                    }, 1000);
-                });
             }
+
         }
     });
 });
@@ -152,31 +140,3 @@ function movesCount(i) {
 //     + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
 //     + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
 //     + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
-
-// allCards.forEach(function (card) {
-
-//     card.addEventListener('click', function (e) {
-
-//         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match') && !(openCards.length >= 2)) {
-//             openCards.push(card);
-//             open(card);
-
-//             // check if they match using dataset
-//             if (openCards[0].dataset.card == openCards[1].dataset.card) {
-//                 match(openCards[0]);
-//                 match(openCards[1]);
-//             }
-
-
-//             // if cards dont match turn down and reset open cards to []
-//             if (openCards.length == 2) {
-//                 openCards.forEach(function (card) {
-//                     setTimeout(function () {
-//                         card.classList.remove('open', 'show');
-//                         openCards = [];
-//                     }, 1000);
-//                 });
-//             }
-//         }
-//     });
-// });
