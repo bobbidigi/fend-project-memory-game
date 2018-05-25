@@ -38,13 +38,14 @@ function winner(moves) {
     winDisplay, addEventListener('click', function(e) {
         if (e.target.id == 'reset-won') {
             winDisplay.style.display = 'none';
-            // reset();
+            reset();
         }
     });
 }
 
 // reset-won and restart for restart
 function reset() {
+
     // movesCount(-moves);
     // console.log(matchedCards.length);
     // console.log(openCards.length);
@@ -100,11 +101,12 @@ allCards.forEach(function(card) {
                     setTimeout(function() {
                         matchedCards.forEach(function(card) {
                             unmatch(card);
+                            card.remove();
+                            matchedCards = [];
+                            openCards = [];
+                            movesCount(-moves);
                         });
-                        matchedCards = [];
-                        openCards = [];
-                        movesCount(-moves);
-                    }, 5000);
+                    }, 1000);
                     winner(moves);
                 }
             } else {
