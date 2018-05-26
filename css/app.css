@@ -174,16 +174,16 @@
             padding: 3vw;
         }
         .deck {
-            width: calc(80vw - 8vw);
-            height: calc(80vw - 8vw);
-            padding: 4vw;
-            margin: 0 4vw;
+            width: calc(90vh - 8vh);
+            height: calc(90vh - 8vh);
+            padding: 4vh;
+            margin: 0 18vh;
         }
         .deck .card {
             /* height: 125px; */
             /* width: 125px; */
-            width: calc(20vw - 6vw);
-            height: calc(20vw - 6vw);
+            width: calc(25vh - 8vh);
+            height: calc(25vh - 8vh);
         }
     }
     
@@ -195,6 +195,18 @@
             width: 33vw;
             font-size: 3vw;
             padding: 2vw;
+        }
+        .deck {
+            width: calc(100vh - 8vh);
+            height: calc(100vh - 8vh);
+            padding: 4vh;
+            margin: 0 4vh;
+        }
+        .deck .card {
+            /* height: 125px; */
+            /* width: 125px; */
+            width: calc(25vh - 8vh);
+            height: calc(25vh - 8vh);
         }
     }
     
