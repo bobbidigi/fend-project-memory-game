@@ -20,6 +20,23 @@ const moveCounter = document.querySelector('.moves');
 const stars = document.querySelector('.stars');
 let star = 8;
 
+let t = 1;
+// const time = document.getElementById('time');
+function Timer() {
+    var timer = setInterval(function() {
+        console.log(t);
+        t++;
+        if (matchedCards.length == 16) {
+            clearInterval(timer);
+        }
+    }, 1000);
+}
+
+var timer = new Timer();
+
+
+
+
 
 function initGame() {
     let cardHTML = shuffle(cards).map(function(card) {
@@ -54,8 +71,9 @@ function removeElement(node) {
 
 function winner(moves) {
     winDisplay.style.display = 'flex';
-    winDisplay.innerHTML = `<h1>Congratulation you won in ${moves} moves!</h1>
+    winDisplay.innerHTML = `<h1>You won in ${moves} moves!</h1>
                                 <h1>You earned ${star} stars!</h1>
+                                <h1>You won in ${t} seconds!</h1>
                                   <button id='reset-won'>PLAY AGAIN</button>`;
     winDisplay, addEventListener('click', function(e) {
         if (e.target.id == 'reset-won') {

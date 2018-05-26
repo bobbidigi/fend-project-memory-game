@@ -128,7 +128,7 @@ h1 {
 .win h1 {
     color: #fff;
     font-size: 5vw;
-    margin: 2em auto;
+    margin-top: 2em auto;
 }
 
 .win button {
