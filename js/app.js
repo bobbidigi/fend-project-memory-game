@@ -17,12 +17,16 @@ const restart = document.querySelector('.restart');
 const deck = document.querySelector('.deck');
 let moves = 0;
 const moveCounter = document.querySelector('.moves');
+const stars = document.querySelector('.stars');
+let star = 8;
+
 
 function initGame() {
     let cardHTML = shuffle(cards).map(function(card) {
         return makeCard(card);
     });
     deck.innerHTML = cardHTML.join(" ");
+    makeStars(star);
 }
 
 initGame();
@@ -31,9 +35,27 @@ function makeCard(card) {
     return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 }
 
+function makeStars(el) {
+    while (stars.hasChildNodes()) {
+        stars.removeChild(stars.firstChild);
+    }
+    for (let i = 1; i <= el; i++) {
+        const starLi = document.createElement('li');
+        const starI = document.createElement('i');
+        starI.classList.add('fa', 'fa-star');
+        starLi.appendChild(starI);
+        stars.appendChild(starLi);
+    }
+}
+
+function removeElement(node) {
+    node.parentNode.removeChild(node);
+}
+
 function winner(moves) {
     winDisplay.style.display = 'flex';
     winDisplay.innerHTML = `<h1>Congratulation you won in ${moves} moves!</h1>
+                                <h1>You earned ${star} stars!</h1>
                                   <button id='reset-won'>PLAY AGAIN</button>`;
     winDisplay, addEventListener('click', function(e) {
         if (e.target.id == 'reset-won') {
@@ -44,6 +66,8 @@ function winner(moves) {
 }
 
 // reset-won and restart for restart
+restart.addEventListener('click', reset);
+
 function reset() {
     location.reload();
 }
@@ -89,14 +113,17 @@ allCards.forEach(function(card) {
                     match(openCards[0]);
                     match(openCards[1]);
                     openCards = [];
-                    // moves + 1
+                    star += 1;
                     movesCount(1);
+                    makeStars(star);
                     // if all 16 matched 
                     if (matchedCards.length == 16) {
                         winner(moves);
                     }
                 } else {
                     movesCount(1);
+                    star -= 1;
+                    makeStars(star);
                     // if cards dont match turn down and reset open cards to []
                     openCards.forEach(function(card) {
                         setTimeout(function() {
