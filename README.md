@@ -2,19 +2,19 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+CSS
+img
+js
+index.html
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This simple web app consists of HTML and CSS files, but its functionality is primarily in the JavaScript file written in plain vanilla JS.
+This was a required project in the Udacity Font-end Nano degree program.
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## User Instructions
+The User can click to open 2 cards at a time if there is match the cards will stay open and a star will be added as this counts as one turn. If there is no match a star will be taken away and the turn counted. After the user matches all of the cards, a pop-up will appear with the amount of turns taken, stars earned, and the amount of time it took. There is option to play again in the pop-up. 
 
 ## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
