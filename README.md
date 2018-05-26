@@ -2,10 +2,10 @@
 
 ## Table of Contents
 
-CSS
-img
-js
-index.html
+CSS (css3)
+img (1 background body img)
+js  (plain vanilla JS)
+index.html (HTML5)
 
 ## Instructions
 
