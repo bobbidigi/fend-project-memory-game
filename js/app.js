@@ -19,9 +19,12 @@ let moves = 0;
 const moveCounter = document.querySelector('.moves');
 const stars = document.querySelector('.stars');
 let star = 8;
-
 let t = 1;
-// const time = document.getElementById('time');
+const scoreSound = document.getElementById('success-sound');
+const winGameSound = document.getElementById('win-sound');
+
+
+// timer func
 function Timer() {
     var timer = setInterval(function() {
         console.log(t);
@@ -52,6 +55,7 @@ function makeCard(card) {
     return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 }
 
+// eleminate all stars and create stars based on player moves
 function makeStars(el) {
     while (stars.hasChildNodes()) {
         stars.removeChild(stars.firstChild);
@@ -65,11 +69,9 @@ function makeStars(el) {
     }
 }
 
-function removeElement(node) {
-    node.parentNode.removeChild(node);
-}
-
+// winner func pop-up and winnersound
 function winner(moves) {
+    winGameSound.play();
     winDisplay.style.display = 'flex';
     winDisplay.innerHTML = `<h1>You won in ${moves} moves!</h1>
                                 <h1>You earned ${star} stars!</h1>
@@ -131,21 +133,31 @@ allCards.forEach(function(card) {
                     match(openCards[0]);
                     match(openCards[1]);
                     openCards = [];
+                    // add star for match
                     star += 1;
+                    // add move
                     movesCount(1);
                     makeStars(star);
+                    // play score sound
+                    scoreSound.play();
                     // if all 16 matched 
                     if (matchedCards.length == 16) {
+                        //winner func up top
                         winner(moves);
                     }
                 } else {
+                    // add move
                     movesCount(1);
+                    // take away a star
                     star -= 1;
                     makeStars(star);
                     // if cards dont match turn down and reset open cards to []
                     openCards.forEach(function(card) {
+                        // no match animation
+                        card.classList.add('wrong-bounce');
+                        // turn down card remove all classes
                         setTimeout(function() {
-                            card.classList.remove('open', 'show');
+                            card.classList.remove('open', 'show', 'wrong-bounce');
                             openCards = [];
                         }, 1000);
                     });
@@ -155,23 +167,16 @@ allCards.forEach(function(card) {
         }
     });
 });
-
+//open
 function open(el) {
     el.classList.add('open', 'show');
 }
-
+//match
 function match(el) {
     el.classList.add('open', 'show', 'match');
 }
 
-function unmatch(el) {
-    el.classList.remove('open', 'show', 'match');
-}
-
-function close(el) {
-    el.classList.remove('open', 'show', 'match');
-}
-
+//moves counter
 function movesCount(i) {
     moves += i;
     moveCounter.innerText = moves;
