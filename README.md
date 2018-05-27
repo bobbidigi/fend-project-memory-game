@@ -1,7 +1,7 @@
 # Memory Game Project
 
 ## Table of Contents
-
+audio (2 royalty free sound effects from https://freesound.org/browse/tags/sound-effects/)
 CSS (css3)
 img (1 background body img)
 js  (plain vanilla JS)
