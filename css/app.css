@@ -27,6 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 2em;
 }
 
 h1 {
@@ -160,7 +161,8 @@ backface-visibility: hidden;
         padding: 4vw;
     }
     .deck {
-        margin: 3vw;
+        padding: 2vw;
+        margin: 0 3vw;
     }
     .deck .card {
         /* height: 125px; */
@@ -180,16 +182,16 @@ backface-visibility: hidden;
         padding: 3vw;
     }
     .deck {
-        width: calc(90vh - 8vh);
-        height: calc(90vh - 8vh);
-        padding: 4vh;
-        margin: 0 18vh;
+        width: calc(100vw - 4vw);
+        height: calc(100vw - 4vw);
+        padding: 2vw;
+        margin: 0 3vw;
     }
     .deck .card {
         /* height: 125px; */
         /* width: 125px; */
-        width: calc(25vh - 8vh);
-        height: calc(25vh - 8vh);
+        width: calc(25vw - 6vw);
+        height: calc(25vw - 6vw);
     }
 }
 
@@ -203,16 +205,31 @@ backface-visibility: hidden;
         padding: 2vw;
     }
     .deck {
-        width: calc(100vh - 8vh);
-        height: calc(100vh - 8vh);
-        padding: 4vh;
-        margin: 0 4vh;
+        width: calc(100vh - 4vh);
+        height: calc(100vh - 4vh);
+        padding: 2vw;
+        margin: 0 3vw;
     }
     .deck .card {
         /* height: 125px; */
         /* width: 125px; */
-        width: calc(25vh - 8vh);
-        height: calc(25vh - 8vh);
+        width: calc(25vh - 6vh);
+        height: calc(25vh - 6vh);
+    }
+}
+
+@media screen and (min-width: 1100px) {
+    .deck {
+        width: calc(100vh - 4vh);
+        height: calc(100vh - 4vh);
+        padding: 2vw;
+        margin: 0 3vw;
+    }
+    .deck .card {
+        /* height: 125px; */
+        /* width: 125px; */
+        width: calc(25vh - 6vh);
+        height: calc(25vh - 6vh);
     }
 }
 

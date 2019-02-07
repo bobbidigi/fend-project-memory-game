@@ -85,7 +85,7 @@ function winner(moves) {
     });
 }
 
-// reset-won and restart for restart
+// reset-won in winner(moves) and restart for restart
 restart.addEventListener('click', reset);
 
 function reset() {
